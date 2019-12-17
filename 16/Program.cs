@@ -18,25 +18,30 @@ namespace AoC._2019._16
             }
             input = inputSB.ToString();
             var offset = int.Parse(input.Substring(0, 7));
-            var list = input.Select(i => int.Parse(i.ToString())).ToList();
-            /*for (var phase = 0; phase < 100; phase++)
+            var list = input.Select(i => int.Parse(i.ToString())).ToArray();
+            for (var phase = 0; phase < 100; phase++)
             {
-                list = DoFFT(list);
+                list = GetOutputRest(list, offset);
             }
-            Console.WriteLine(input.Substring(0, offset));*/
-            Console.WriteLine(GetNumberAt(list, 1, offset));
+            Console.WriteLine($"{list[offset]}{list[offset + 1]}{list[offset + 2]}{list[offset + 3]}{list[offset + 4]}{list[offset + 5]}{list[offset + 6]}{list[offset + 7]}");
         }
 
-        static int GetNumberAt(List<int> input, int phases, int index)
+        static int[] GetOutputRest(int[] input, int index)
         {
-            if (phases == 0 || index == input.Count - 1)
+            var length = input.Length - index;
+            var output = new int[input.Length];
+            for (var i = 0; i < length; i++)
             {
-                return input[index];
+                if (i == 0)
+                {
+                    output[input.Length - 1 - i] = input[input.Length - 1 - i];
+                }
+                else
+                {
+                    output[input.Length - 1 - i] = (output[input.Length - i] + input[input.Length - 1 - i]) % 10;
+                }
             }
-            else
-            {
-                return (GetNumberAt(input, phases, index + 1) + GetNumberAt(input, phases - 1, index)) % 10;
-            }
+            return output;
         }
 
         static List<double> DoFFT(List<double> input)
