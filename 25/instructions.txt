@@ -1,0 +1,33 @@
+east
+take antenna
+west
+north
+take weather machine
+north
+take klein bottle
+east
+take spool of cat6
+east
+south
+take mug
+north
+north
+west
+north
+take cake
+south
+east
+east
+north
+north
+take tambourine
+south
+south
+south
+take shell
+north
+west
+south
+west
+south
+south
